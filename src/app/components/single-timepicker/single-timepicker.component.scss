@@ -103,11 +103,6 @@
         color: white;
         border-radius: 20px;
       }
-
-      &.hour-disabled,
-      &.minute-disabled {
-        color: #b7b7b7;
-      }
     }
   }
 }
@@ -125,5 +120,20 @@
     &:hover {
       background-color: #b7b7b7;
     }
+  }
+}
+
+
+.fadeIn {
+  animation: fadeIn 850ms;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
   }
 }

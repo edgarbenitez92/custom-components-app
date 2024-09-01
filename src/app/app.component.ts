@@ -4,7 +4,7 @@ import { RouterOutlet } from '@angular/router';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
-import { DialogTimepickerComponent } from './components/dialog-timepicker/dialog-timepicker.component';
+import { SingleTimepickerComponent } from './components/single-timepicker/single-timepicker.component';
 
 @Component({
   selector: 'app-root',
@@ -35,7 +35,7 @@ export class AppComponent {
 
   openDialogTimePicker(type: string): void {
     console.log('timepicker opening...', type);
-    const dialogRef = this.matDialog.open(DialogTimepickerComponent, {
+    const dialogRef = this.matDialog.open(SingleTimepickerComponent, {
       data: {
         time: this.amPmTimeValue,
       },
