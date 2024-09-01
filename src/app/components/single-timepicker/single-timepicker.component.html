@@ -11,7 +11,7 @@
 </div>
 
 <div mat-dialog-content class="time-picker-container">
-  <div class="clock">
+  <div #clock class="clock">
     @if(isSelectingHours) {
     <div class="hand hour-hand fadeIn" [style.transform]="hourHandTransform"></div>
     } @else {
@@ -23,9 +23,8 @@
     @if (isSelectingHours) {
     <span class="fadeIn">
       @for(hour of hoursList; track hour.label) {
-      <div class="hour" [style.transform]="hour.transform" [ngClass]="{
-                'hour-selected': hour.label == selectedHour,
-              }" (click)="selectHour(hour)">
+      <div class="hour" [style.transform]="hour.transform" [ngClass]="{ 'hour-selected': hour.label == selectedHour }"
+        (click)="selectHour(hour)">
         {{ hour.label }}
       </div>
       }
@@ -45,4 +44,5 @@
 </div>
 <div mat-dialog-actions class="footer-actions">
   <button mat-stroked-button class="btn-close" (click)="closeDialog()">Cerrar</button>
+  <button mat-stroked-button class="btn-confirm" (click)="closeDialog()">Confirmar</button>
 </div>

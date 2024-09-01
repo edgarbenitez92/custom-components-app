@@ -43,7 +43,7 @@
     height: 250px;
     border-radius: 50%;
     background: #b7b7b759;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.1);
     margin: auto;
 
     .hand {
@@ -110,15 +110,29 @@
 .footer-actions {
   display: flex;
   align-items: center;
-  justify-content: flex-end;
+  justify-content: space-between;
   margin: 10px;
 
   .btn-close {
     background-color: #f1f1f1;
+    border: 1px solid #002b49;
     color: #002b49;
+    border-radius: 10px;
+    width: 120px;
 
     &:hover {
-      background-color: #b7b7b7;
+      background-color: #d1d1d1;
+    }
+  }
+
+  .btn-confirm {
+    background-color: #002b49;
+    color: white;
+    border-radius: 10px;
+    width: 120px;
+
+    &:hover {
+      background-color: #005896;
     }
   }
 }

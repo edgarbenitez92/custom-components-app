@@ -1,5 +1,5 @@
 import { DatePipe, NgClass, NgFor, NgIf } from '@angular/common';
-import { Component, inject } from '@angular/core';
+import { Component, ElementRef, inject, ViewChild } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
 import {
@@ -17,6 +17,8 @@ import {
   providers: [DatePipe],
 })
 export class SingleTimepickerComponent {
+  @ViewChild('clock', { static: true }) clock!: ElementRef<HTMLDivElement>;
+
   private dialogRef = inject(MatDialogRef<SingleTimepickerComponent>);
   private dialogData: SingleTimePickerData = inject(MAT_DIALOG_DATA);
 
@@ -35,11 +37,14 @@ export class SingleTimepickerComponent {
 
   isSelectingHours: boolean = true;
 
+  isDragging: boolean = false;
+
   ngOnInit(): void {
     this.mappingData();
     this.createHoursList();
     this.createMinutesList();
     this.updateClock();
+    this.addClockEventListeners();
   }
 
   mappingData(): void {
@@ -53,7 +58,7 @@ export class SingleTimepickerComponent {
   createHoursList(): void {
     this.hoursList = Array.from({ length: 12 }, (_, i) => ({
       id: i + 1,
-      label: (i + 1).toString(),
+      label: (i + 1).toString().padStart(2, '0'),
       transform: this.calculateTransform(i + 1, 12),
     }));
   }
@@ -81,16 +86,64 @@ export class SingleTimepickerComponent {
     return `translate(${x}px, ${y}px) translate(-50%, -50%)`;
   }
 
-  selectHour(hour: any) {
-    this.selectedHour = hour.label.toString().padStart(2, '0');
-    this.isSelectingHours = false;
+  addClockEventListeners() {
+    const clockElement = this.clock.nativeElement;
+    clockElement.addEventListener('mousedown', this.onMouseDown.bind(this));
+    clockElement.addEventListener('mousemove', this.onMouseMove.bind(this));
+    clockElement.addEventListener('mouseup', this.onMouseUp.bind(this));
+  }
+
+  onMouseDown(event: MouseEvent) {
+    if (!event) return;
+    this.isDragging = true;
+    this.updateTimeOnDrag(event);
+  }
+
+  onMouseMove(event: MouseEvent) {
+    if (!event || !this.isDragging) return;
+
+    this.updateTimeOnDrag(event);
+  }
+
+  onMouseUp(event: MouseEvent) {
+    if (!event || !event.target) return;
+    this.isDragging = false;
+    if (this.isSelectingHours) this.isSelectingHours = false;
+  }
+
+  updateTimeOnDrag(event: MouseEvent) {
+    const rect = this.clock.nativeElement.getBoundingClientRect();
+    const x = event.clientX - rect.left - rect.width / 2;
+    const y = event.clientY - rect.top - rect.height / 2;
+    const angle = Math.atan2(y, x) * (180 / Math.PI) + 90;
+
+    if (this.isSelectingHours) {
+      this.selectedHour = this.calculateTimeFromAngle(angle, 12)
+        .toString()
+        .padStart(2, '0');
+      this.updateClock();
+    } else {
+      this.selectedMinute = this.calculateTimeFromAngle(angle, 60)
+        .toString()
+        .padStart(2, '0');
+      this.updateClock();
+    }
+  }
+
+  calculateTimeFromAngle(angle: number, divisions: number): number {
+    const normalizedAngle = angle < 0 ? 360 + angle : angle;
+    const divisionAngle = 360 / divisions;
+    return Math.round(normalizedAngle / divisionAngle) % divisions;
+  }
+
+  selectHour(hour: HourData) {
+    this.selectedHour = hour.label;
     this.createMinutesList();
     this.updateClock();
   }
 
-  selectMinute(minute: any) {
+  selectMinute(minute: MinuteData) {
     this.selectedMinute = minute.label;
-    this.dialogRef.close(this.formattedTime);
   }
 
   selectPeriod(period: string) {
