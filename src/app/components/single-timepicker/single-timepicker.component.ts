@@ -32,6 +32,7 @@ export class SingleTimepickerComponent {
   minuteHandTransform = 'rotate(0deg)';
   hourHandTransform = 'rotate(0deg)';
   selectedHour!: string;
+  displayedHour!: string;
   selectedMinute!: string;
   selectedPeriod!: string;
 
@@ -50,7 +51,10 @@ export class SingleTimepickerComponent {
   mappingData(): void {
     const [time, period] = this.dialogData.time.split(' ');
     const [hour, minute] = time.split(':');
-    this.selectedHour = hour.toString().padStart(2, '0');
+    this.selectedHour = hour.startsWith('0')
+      ? hour.substring(1)
+      : hour.toString().padStart(2, '0');
+    this.displayedHour = hour.toString().padStart(2, '0');
     this.selectedMinute = minute.toString().padStart(2, '0');
     this.selectedPeriod = period;
   }
@@ -58,7 +62,7 @@ export class SingleTimepickerComponent {
   createHoursList(): void {
     this.hoursList = Array.from({ length: 12 }, (_, i) => ({
       id: i + 1,
-      label: (i + 1).toString().padStart(2, '0'),
+      label: (i + 1).toString(),
       transform: this.calculateTransform(i + 1, 12),
     }));
   }
@@ -100,13 +104,12 @@ export class SingleTimepickerComponent {
   }
 
   onMouseMove(event: MouseEvent) {
-    if (!event || !this.isDragging) return;
+    if (!this.isDragging) return;
 
     this.updateTimeOnDrag(event);
   }
 
   onMouseUp(event: MouseEvent) {
-    if (!event || !event.target) return;
     this.isDragging = false;
     if (this.isSelectingHours) this.isSelectingHours = false;
   }
@@ -118,9 +121,10 @@ export class SingleTimepickerComponent {
     const angle = Math.atan2(y, x) * (180 / Math.PI) + 90;
 
     if (this.isSelectingHours) {
-      this.selectedHour = this.calculateTimeFromAngle(angle, 12)
-        .toString()
-        .padStart(2, '0');
+      const hour = this.calculateTimeFromAngle(angle, 12);
+      this.selectedHour =
+        hour === 0 ? '12' : this.calculateTimeFromAngle(angle, 12).toString();
+      this.displayedHour = hour === 0 ? '12' : hour.toString().padStart(2, '0');
       this.updateClock();
     } else {
       this.selectedMinute = this.calculateTimeFromAngle(angle, 60)
@@ -138,8 +142,7 @@ export class SingleTimepickerComponent {
 
   selectHour(hour: HourData) {
     this.selectedHour = hour.label;
-    this.createMinutesList();
-    this.updateClock();
+    this.displayedHour = hour.label.padStart(2, '0');
   }
 
   selectMinute(minute: MinuteData) {
@@ -160,7 +163,7 @@ export class SingleTimepickerComponent {
   }
 
   get formattedTime() {
-    const hour = this.selectedHour.toString().padStart(2, '0');
+    const hour = this.displayedHour;
     const minute = this.selectedMinute.toString().padStart(2, '0');
     return `${hour}:${minute} ${this.selectedPeriod}`;
   }

@@ -1,5 +1,5 @@
 <div mat-dialog-title class="header-dialog-container">
-  <div class="full-time-txt">{{ selectedHour }} : {{ selectedMinute }}</div>
+  <div class="full-time-txt">{{ displayedHour }} : {{ selectedMinute }}</div>
 
   <div class="selector-am-pm">
     @for(period of periodsList; track period.id) {
@@ -43,6 +43,6 @@
   </div>
 </div>
 <div mat-dialog-actions class="footer-actions">
-  <button mat-stroked-button class="btn-close" (click)="closeDialog()">Cerrar</button>
-  <button mat-stroked-button class="btn-confirm" (click)="closeDialog()">Confirmar</button>
+  <button mat-stroked-button class="btn-close" (click)="closeDialog()">Cancel</button>
+  <button mat-stroked-button class="btn-confirm" (click)="closeDialog()">Confirm</button>
 </div>

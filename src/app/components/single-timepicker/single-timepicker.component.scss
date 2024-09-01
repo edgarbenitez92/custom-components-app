@@ -45,6 +45,7 @@
     background: #b7b7b759;
     box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.1);
     margin: auto;
+    user-select: none;
 
     .hand {
       position: absolute;
@@ -96,6 +97,7 @@
       cursor: pointer;
       font-weight: 700;
       color: black;
+      user-select: none;
 
       &.hour-selected,
       &.minute-selected {
