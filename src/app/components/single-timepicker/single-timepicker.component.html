@@ -16,7 +16,9 @@
     <div class="hand hour-hand fadeIn" [style.transform]="hourHandTransform"></div>
     } @else {
     <div class="hand minute-hand fadeIn" [style.transform]="minuteHandTransform">
-      <div class="hand-end-circle" *ngIf="!isMinuteMultipleOfFive(selectedMinute)"></div>
+      @if(!isMinuteMultipleOfFive(selectedMinute)) {
+      <span class="hand-end-circle"></span>
+      }
     </div>
     }
     <div class="center"></div>
@@ -31,10 +33,9 @@
     </span>
     } @else {
     <span class="fadeIn">
-      @for(minute of minutesList; track minute.label) {
-      <div class="minute" [style.transform]="minute.transform" [ngClass]="{
-                'minute-selected': minute.label === selectedMinute
-              }" (click)="selectMinute(minute)">
+      @for(minute of minutesList; track minute.id) {
+      <div class="minute" [style.transform]="minute.transform"
+        [ngClass]="{ 'minute-selected': minute.label === selectedMinute }" (click)="selectMinute(minute)">
         {{ minute.label }}
       </div>
       }
@@ -44,5 +45,5 @@
 </div>
 <div mat-dialog-actions class="footer-actions">
   <button mat-stroked-button class="btn-close" (click)="closeDialog()">Cancel</button>
-  <button mat-stroked-button class="btn-confirm" (click)="closeDialog()">Confirm</button>
+  <button mat-stroked-button class="btn-confirm" (click)="closeDialog()">Confirmar</button>
 </div>
