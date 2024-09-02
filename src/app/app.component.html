@@ -5,7 +5,7 @@
     <div class="timepicker-standard">
       <mat-form-field floatLabel="always" class="form-field-timepicker" (click)="openDialogStandardTimepicker()">
         <mat-label>Time A.M./P.M.</mat-label>
-        <input matInput [value]="standardTimeValue" readonly>
+        <input matInput class="input-timepicker" [value]="standardTimeValue" readonly>
       </mat-form-field>
     </div>
 
@@ -14,7 +14,7 @@
     <div class="timepicker-full-hours">
       <mat-form-field floatLabel="always" class="form-field-timepicker" (click)="openDialogFullTimepicker()">
         <mat-label>Time 24 H</mat-label>
-        <input matInput [value]="fullTimeValue" readonly>
+        <input matInput class="input-timepicker" [value]="fullTimeValue" readonly>
       </mat-form-field>
     </div>
   </div>

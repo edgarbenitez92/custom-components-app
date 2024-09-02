@@ -23,22 +23,22 @@ import { FullTimepickerComponent } from './components/full-timepicker/full-timep
 })
 export class AppComponent {
   private matDialog = inject(MatDialog);
-
   standardTimeValue: string;
   fullTimeValue: string;
 
   currentSingleTime: string;
+  currentDate: Date;
 
   constructor() {
+    this.currentDate = new Date();
     this.currentSingleTime = this.getCurrentSingleTime();
     this.standardTimeValue = this.currentSingleTime;
-    this.fullTimeValue = '22:11';
+    this.fullTimeValue = this.getCurrentFullTime();
   }
 
   getCurrentSingleTime(): string {
-    const currentDate = new Date();
-    let hour = currentDate.getHours();
-    const minutes = currentDate.getMinutes().toString().padStart(2, '0');
+    let hour = this.currentDate.getHours();
+    const minutes = this.currentDate.getMinutes().toString().padStart(2, '0');
 
     const period = hour >= 12 ? 'PM' : 'AM';
 
@@ -46,6 +46,13 @@ export class AppComponent {
     const hourString = hour.toString().padStart(2, '0');
 
     return `${hourString}:${minutes} ${period}`;
+  }
+
+  getCurrentFullTime(): string {
+    const hour = this.currentDate.getHours().toString().padStart(2, '0');
+    const minutes = this.currentDate.getMinutes().toString().padStart(2, '0');
+
+    return `${hour}:${minutes}`;
   }
 
   openDialogStandardTimepicker(): void {
@@ -73,8 +80,8 @@ export class AppComponent {
         time: this.fullTimeValue,
       },
       panelClass: 'dialog-timepicker',
-      width: '300px',
-      height: '430px',
+      width: '350px',
+      height: '500px',
       hasBackdrop: true,
       disableClose: true,
     });

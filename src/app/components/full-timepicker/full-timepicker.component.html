@@ -8,20 +8,14 @@
       selectedMinute }}
     </span>
   </div>
-
-  <div class="selector-am-pm">
-    @for(period of periodsList; track period.id) {
-    <span [ngClass]="{ 'period-selected': period.label === selectedPeriod }" (click)="selectPeriod(period.label)">
-      {{ period.label }}
-    </span>
-    }
-  </div>
 </div>
 
 <div mat-dialog-content class="time-picker-container">
   <div #clock class="clock">
     @if(isSelectingHours) {
-    <div class="hand hour-hand fadeIn" [style.transform]="hourHandTransform"></div>
+    <div class="hand hour-hand fadeIn" [ngClass]="{'short-hand': selectedHour === '00' || +selectedHour > 12}"
+      [style.transform]="hourHandTransform">
+    </div>
     } @else {
     <div class="hand minute-hand fadeIn" [style.transform]="minuteHandTransform">
       @if(!isMinuteMultipleOfFive(selectedMinute)) {
