@@ -35,14 +35,14 @@ export class FullTimepickerComponent {
   selectedMinute!: string;
 
   isSelectingHours: boolean = true;
-
   isDragging: boolean = false;
 
   ngOnInit(): void {
     this.mappingData();
     this.createHoursList();
     this.createMinutesList();
-    this.updateClock();
+    this.updateClockHourHand();
+    this.updateClockMinutesHand();
     this.addClockEventListeners();
   }
 
@@ -79,10 +79,13 @@ export class FullTimepickerComponent {
     }));
   }
 
-  updateClock() {
+  updateClockHourHand(): void {
     const hourDegree = Number(this.selectedHour) * 30 - 90;
-    const minuteDegree = Number(this.selectedMinute) * 6 - 90;
     this.hourHandTransform = `rotate(${hourDegree}deg)`;
+  }
+
+  updateClockMinutesHand() {
+    const minuteDegree = Number(this.selectedMinute) * 6 - 90;
     this.minuteHandTransform = `rotate(${minuteDegree}deg)`;
   }
 
@@ -112,7 +115,6 @@ export class FullTimepickerComponent {
 
   onMouseMove(event: MouseEvent) {
     if (!this.isDragging) return;
-
     this.updateTimeOnDrag(event);
   }
 
@@ -128,27 +130,35 @@ export class FullTimepickerComponent {
     const angle = Math.atan2(y, x) * (180 / Math.PI) + 90;
 
     if (this.isSelectingHours) {
-      const distanceFromCenter = Math.sqrt(x * x + y * y);
-      const outerRadius = 135;
-      const innerRadius = 90;
-      let hour: number;
-
-      if (distanceFromCenter <= innerRadius) {
-        hour = this.calculateTimeFromAngle(angle, 12) + 12;
-        if (hour === 12) hour = 0;
-      } else {
-        hour = this.calculateTimeFromAngle(angle, 12) || 12;
-      }
-
-      this.selectedHour = hour.toString().padStart(2, '0');
-      this.displayedHour = hour.toString().padStart(2, '0');
-      this.updateClock();
+      this.updateHourTimeOnDrag(angle, x, y);
     } else {
-      this.selectedMinute = this.calculateTimeFromAngle(angle, 60)
-        .toString()
-        .padStart(2, '0');
-      this.updateClock();
+      this.updateMinutesTimeOnDrag(angle);
     }
+  }
+
+  updateHourTimeOnDrag(angle: number, xAxis: number, yAxis: number): void {
+    const distanceFromCenter = Math.sqrt(xAxis * xAxis + yAxis * yAxis);
+    const outerRadius = 135;
+    const innerRadius = 90;
+    let hour: number;
+
+    if (distanceFromCenter <= innerRadius) {
+      hour = this.calculateTimeFromAngle(angle, 12) + 12;
+      if (hour === 12) hour = 0;
+    } else {
+      hour = this.calculateTimeFromAngle(angle, 12) || 12;
+    }
+
+    this.selectedHour = hour.toString().padStart(2, '0');
+    this.displayedHour = hour.toString().padStart(2, '0');
+    this.updateClockHourHand();
+  }
+
+  updateMinutesTimeOnDrag(angle: number) {
+    this.selectedMinute = this.calculateTimeFromAngle(angle, 60)
+      .toString()
+      .padStart(2, '0');
+    this.updateClockMinutesHand();
   }
 
   calculateTimeFromAngle(angle: number, divisions: number): number {

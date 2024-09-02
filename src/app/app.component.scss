@@ -10,15 +10,40 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    width: 280px;
-    height: 250px;
-    border: 1px solid black;
+    width: max-content;
+    height: max-content;
+    border: 5px solid #002b49;
     border-radius: 15px;
     gap: 5px;
 
-    .timepicker-standard {
+    .standard-timepicker-title {
+      width: 100%;
+      padding-top: 15px;
+      padding-bottom: 15px;
+      background-color: #26d07c;
+      color: white;
+      font-weight: bold;
+      text-align: center;
+      border-top-left-radius: 10px;
+      border-top-right-radius: 10px;
+      font-family: 'Montserrat', sans-serif;
+    }
+
+    .standard-timepicker {
       width: 100%;
       text-align: center;
+      margin: 10px;
+    }
+
+    .full-timepicker-title {
+      width: 100%;
+      padding-top: 15px;
+      padding-bottom: 15px;
+      background-color: #26d07c;
+      color: white;
+      font-weight: bold;
+      text-align: center;
+      font-family: 'Montserrat', sans-serif;
     }
 
     .timepicker-full-hours {
@@ -28,6 +53,7 @@
 
     .form-field-timepicker {
       cursor: pointer;
+
 
       .input-timepicker {
         cursor: pointer;
