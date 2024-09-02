@@ -2,7 +2,7 @@ import { Directive, ElementRef, HostListener, inject } from '@angular/core';
 import { RutService } from '../../services/rut.service';
 
 @Directive({
-  selector: '[appOnlyRut]',
+  selector: '[onlyRut]',
   standalone: true,
 })
 export class OnlyRutDirective {
@@ -11,8 +11,32 @@ export class OnlyRutDirective {
 
   constructor() {}
 
+  ngOnInit() {
+    this.formatRut();
+  }
+
+  @HostListener('focus')
+  onFocus() {
+    this.cleanRut();
+  }
+
   @HostListener('input')
   onInput() {
+    this.sanitizeRutInput();
+  }
+
+  @HostListener('blur')
+  onBlur() {
+    this.formatRut();
+  }
+
+  private cleanRut(): void {
+    const rutValue = this.elementRef.nativeElement.value;
+    const cleanedRut = this.rutService.clean(rutValue);
+    this.elementRef.nativeElement.value = cleanedRut;
+  }
+
+  private sanitizeRutInput(): void {
     const value = this.elementRef.nativeElement.value;
     const chars = [
       '0',
@@ -39,8 +63,7 @@ export class OnlyRutDirective {
     this.elementRef.nativeElement.value = aux.join('');
   }
 
-  @HostListener('blur')
-  onBlur() {
+  private formatRut(): void {
     const rutValue = this.elementRef.nativeElement.value;
     this.elementRef.nativeElement.value = this.rutService.format(rutValue);
   }
