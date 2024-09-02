@@ -25,19 +25,35 @@ export class AppComponent {
 
   title = 'custom-timepicker';
 
-  amPmTimeValue: string;
+  standardTimeValue: string;
   fullTimeValue: string;
 
+  currentSingleTime: string;
+
   constructor() {
-    this.amPmTimeValue = '10:11 PM';
+    this.currentSingleTime = this.getCurrentSingleTime();
+    this.standardTimeValue = this.currentSingleTime;
     this.fullTimeValue = '22:11';
+  }
+
+  getCurrentSingleTime(): string {
+    const currentDate = new Date();
+    let hour = currentDate.getHours();
+    const minutes = currentDate.getMinutes().toString().padStart(2, '0');
+
+    const period = hour >= 12 ? 'PM' : 'AM';
+
+    hour = hour % 12 || 12;
+    const hourString = hour.toString().padStart(2, '0');
+
+    return `${hourString}:${minutes} ${period}`;
   }
 
   openDialogTimePicker(type: string): void {
     console.log('timepicker opening...', type);
     const dialogRef = this.matDialog.open(SingleTimepickerComponent, {
       data: {
-        time: this.amPmTimeValue,
+        time: this.standardTimeValue,
       },
       panelClass: 'dialog-timepicker',
       width: '300px',
@@ -47,7 +63,7 @@ export class AppComponent {
     });
 
     dialogRef.afterClosed().subscribe((value) => {
-      this.amPmTimeValue = value;
+      this.standardTimeValue = value;
     });
   }
 }
