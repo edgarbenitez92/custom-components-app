@@ -1,19 +1,19 @@
 <section class="main-container">
   <div class="timepickers-container">
-    <div>TimePicker 12 HOURS AM/PM</div>
+    <div>Timepicker 12H</div>
 
-    <div class="timepicker-am-pm">
-      <mat-form-field floatLabel="always" class="form-field-timepicker" (click)="openDialogTimePicker('12')">
-        <mat-label>Hora A.M./P.M.</mat-label>
+    <div class="timepicker-standard">
+      <mat-form-field floatLabel="always" class="form-field-timepicker" (click)="openDialogStandardTimepicker()">
+        <mat-label>Time A.M./P.M.</mat-label>
         <input matInput [value]="standardTimeValue" readonly>
       </mat-form-field>
     </div>
 
-    <div>TimePicker 24 HOURS</div>
+    <div>Timepicker 24H</div>
 
     <div class="timepicker-full-hours">
-      <mat-form-field floatLabel="always" class="form-field-timepicker" (click)="openDialogTimePicker('24')">
-        <mat-label>Hora 24 H</mat-label>
+      <mat-form-field floatLabel="always" class="form-field-timepicker" (click)="openDialogFullTimepicker()">
+        <mat-label>Time 24 H</mat-label>
         <input matInput [value]="fullTimeValue" readonly>
       </mat-form-field>
     </div>

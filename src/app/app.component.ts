@@ -23,8 +23,6 @@ import { SingleTimepickerComponent } from './components/single-timepicker/single
 export class AppComponent {
   private matDialog = inject(MatDialog);
 
-  title = 'custom-timepicker';
-
   standardTimeValue: string;
   fullTimeValue: string;
 
@@ -49,8 +47,8 @@ export class AppComponent {
     return `${hourString}:${minutes} ${period}`;
   }
 
-  openDialogTimePicker(type: string): void {
-    console.log('timepicker opening...', type);
+  openDialogStandardTimepicker(): void {
+    console.log('standard timepicker opening...');
     const dialogRef = this.matDialog.open(SingleTimepickerComponent, {
       data: {
         time: this.standardTimeValue,
@@ -65,5 +63,9 @@ export class AppComponent {
     dialogRef.afterClosed().subscribe((value) => {
       this.standardTimeValue = value;
     });
+  }
+
+  openDialogFullTimepicker(): void {
+    console.log('full timepicker opening...');
   }
 }
