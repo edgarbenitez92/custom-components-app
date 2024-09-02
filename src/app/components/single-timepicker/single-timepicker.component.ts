@@ -140,6 +140,10 @@ export class SingleTimepickerComponent {
     return Math.round(normalizedAngle / divisionAngle) % divisions;
   }
 
+  setSelectionTimeState(selectingHours: boolean): void {
+    this.isSelectingHours = selectingHours;
+  }
+
   selectHour(hour: HourData) {
     this.selectedHour = hour.label;
     this.displayedHour = hour.label.padStart(2, '0');

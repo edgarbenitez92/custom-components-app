@@ -1,5 +1,13 @@
 <div mat-dialog-title class="header-dialog-container">
-  <div class="full-time-txt">{{ displayedHour }} : {{ selectedMinute }}</div>
+  <div class="displayed-time">
+    <span [ngClass]="{'in-selection-state': isSelectingHours }" (click)="setSelectionTimeState(true)">
+      {{ displayedHour }}
+    </span>
+    :
+    <span [ngClass]="{'in-selection-state': !isSelectingHours }" (click)="setSelectionTimeState(false)">{{
+      selectedMinute }}
+    </span>
+  </div>
 
   <div class="selector-am-pm">
     @for(period of periodsList; track period.id) {
@@ -45,5 +53,5 @@
 </div>
 <div mat-dialog-actions class="footer-actions">
   <button mat-stroked-button class="btn-close" (click)="closeDialog()">Cancel</button>
-  <button mat-stroked-button class="btn-confirm" (click)="closeDialog()">Confirmar</button>
+  <button mat-stroked-button class="btn-confirm" (click)="closeDialog()">Confirm</button>
 </div>

@@ -7,9 +7,15 @@
   font-weight: 700;
   min-height: 90px;
 
-  .full-time-txt {
+  .displayed-time {
     margin-right: 15px;
     font-size: 40px;
+    color: #f1f1f1;
+    cursor: pointer;
+
+    .in-selection-state {
+      color: #2196f3;
+    }
   }
 
   .selector-am-pm {
