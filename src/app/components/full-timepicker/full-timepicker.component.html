@@ -1,0 +1,57 @@
+<div mat-dialog-title class="header-dialog-container">
+  <div class="displayed-time">
+    <span [ngClass]="{'in-selection-state': isSelectingHours }" (click)="setSelectionTimeState(true)">
+      {{ displayedHour }}
+    </span>
+    :
+    <span [ngClass]="{'in-selection-state': !isSelectingHours }" (click)="setSelectionTimeState(false)">{{
+      selectedMinute }}
+    </span>
+  </div>
+
+  <div class="selector-am-pm">
+    @for(period of periodsList; track period.id) {
+    <span [ngClass]="{ 'period-selected': period.label === selectedPeriod }" (click)="selectPeriod(period.label)">
+      {{ period.label }}
+    </span>
+    }
+  </div>
+</div>
+
+<div mat-dialog-content class="time-picker-container">
+  <div #clock class="clock">
+    @if(isSelectingHours) {
+    <div class="hand hour-hand fadeIn" [style.transform]="hourHandTransform"></div>
+    } @else {
+    <div class="hand minute-hand fadeIn" [style.transform]="minuteHandTransform">
+      @if(!isMinuteMultipleOfFive(selectedMinute)) {
+      <span class="hand-end-circle"></span>
+      }
+    </div>
+    }
+    <div class="center"></div>
+    @if (isSelectingHours) {
+    <span class="fadeIn">
+      @for(hour of hoursList; track hour.label) {
+      <div class="hour" [style.transform]="hour.transform" [ngClass]="{ 'hour-selected': hour.label == selectedHour }"
+        (click)="selectHour(hour)">
+        {{ hour.label }}
+      </div>
+      }
+    </span>
+    } @else {
+    <span class="fadeIn">
+      @for(minute of minutesList; track minute.id) {
+      <div class="minute" [style.transform]="minute.transform"
+        [ngClass]="{ 'minute-selected': minute.label === selectedMinute }" (click)="selectMinute(minute)">
+        {{ minute.label }}
+      </div>
+      }
+    </span>
+    }
+  </div>
+</div>
+<div mat-dialog-actions class="footer-actions">
+  <button mat-stroked-button class="btn-close" (click)="closeDialog()">Cancel</button>
+  <button mat-stroked-button class="btn-confirm" (click)="closeDialog()">Confirm</button>
+</div>

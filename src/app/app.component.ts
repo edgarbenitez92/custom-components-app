@@ -5,6 +5,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { SingleTimepickerComponent } from './components/single-timepicker/single-timepicker.component';
+import { FullTimepickerComponent } from './components/full-timepicker/full-timepicker.component';
 
 @Component({
   selector: 'app-root',
@@ -67,5 +68,19 @@ export class AppComponent {
 
   openDialogFullTimepicker(): void {
     console.log('full timepicker opening...');
+    const dialogRef = this.matDialog.open(FullTimepickerComponent, {
+      data: {
+        time: this.fullTimeValue,
+      },
+      panelClass: 'dialog-timepicker',
+      width: '300px',
+      height: '430px',
+      hasBackdrop: true,
+      disableClose: true,
+    });
+
+    dialogRef.afterClosed().subscribe((value) => {
+      this.fullTimeValue = value;
+    });
   }
 }

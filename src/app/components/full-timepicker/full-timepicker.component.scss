@@ -1,0 +1,161 @@
+.header-dialog-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #002b49;
+  color: white;
+  font-weight: 700;
+  min-height: 90px;
+
+  .displayed-time {
+    margin-right: 15px;
+    font-size: 40px;
+    color: #f1f1f1;
+    cursor: pointer;
+
+    .in-selection-state {
+      color: #2196f3;
+    }
+  }
+
+  .selector-am-pm {
+    display: flex;
+    flex-direction: column;
+
+    span {
+      cursor: pointer;
+      padding: 5px 0;
+      text-align: center;
+      width: 40px;
+    }
+
+    .period-selected {
+      background-color: #2196f3;
+      color: white;
+      border-radius: 5px;
+    }
+  }
+}
+
+.time-picker-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 10px;
+
+  .clock {
+    position: relative;
+    width: 250px;
+    height: 250px;
+    border-radius: 50%;
+    background: #b7b7b759;
+    box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.1);
+    margin: auto;
+    user-select: none;
+
+    .hand {
+      position: absolute;
+      width: 35%;
+      height: 2px;
+      background: #2196f3;
+      top: 50%;
+      left: 50%;
+      transform-origin: 0% 0%;
+    }
+
+    .hour-hand {}
+
+    .minute-hand {
+      .hand-end-circle {
+        position: absolute;
+        width: 10px;
+        height: 10px;
+        background-color: white;
+        border: 2px solid #2196f3;
+        border-radius: 50%;
+        top: -6px;
+        right: -8px;
+      }
+    }
+
+    .center {
+      position: absolute;
+      width: 8px;
+      height: 8px;
+      background: #2196f3;
+      border-radius: 50%;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    .hour,
+    .minute {
+      position: absolute;
+      width: 30px;
+      height: 30px;
+      line-height: 30px;
+      text-align: center;
+      font-size: 16px;
+      transform-origin: 50% 50%;
+      top: 50%;
+      left: 50%;
+      cursor: pointer;
+      font-weight: 700;
+      color: black;
+      user-select: none;
+
+      &.hour-selected,
+      &.minute-selected {
+        background-color: #2196f3;
+        color: white;
+        border-radius: 20px;
+      }
+    }
+  }
+}
+
+.footer-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 10px;
+
+  .btn-close {
+    background-color: #f1f1f1;
+    border: 1px solid #002b49;
+    color: #002b49;
+    border-radius: 10px;
+    width: 120px;
+
+    &:hover {
+      background-color: #d1d1d1;
+    }
+  }
+
+  .btn-confirm {
+    background-color: #002b49;
+    color: white;
+    border-radius: 10px;
+    width: 120px;
+
+    &:hover {
+      background-color: #005896;
+    }
+  }
+}
+
+
+.fadeIn {
+  animation: fadeIn 850ms;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
