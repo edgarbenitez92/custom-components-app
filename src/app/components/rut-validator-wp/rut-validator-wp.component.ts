@@ -1,13 +1,13 @@
 import { Component } from '@angular/core';
+import { RutPipe } from '../../shared/pipes/rut.pipe';
 
 @Component({
   selector: 'app-rut-validator-wp',
   standalone: true,
-  imports: [],
+  imports: [RutPipe],
   templateUrl: './rut-validator-wp.component.html',
   styleUrl: './rut-validator-wp.component.scss',
 })
 export class RutValidatorWpComponent {
-  rutWp: string = '463214735';
-  rutWd: string = '342240747';
+  userRut: string = '463214735';
 }
