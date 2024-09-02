@@ -9,6 +9,7 @@ import { FullTimepickerComponent } from './components/full-timepicker/full-timep
 import { MatDividerModule } from '@angular/material/divider';
 import { RutValidatorWpComponent } from './components/rut-validator-wp/rut-validator-wp.component';
 import { RutValidatorWdComponent } from './components/rut-validator-wd/rut-validator-wd.component';
+import { RutValidatorFormComponent } from './components/rut-validator-form/rut-validator-form.component';
 
 @Component({
   selector: 'app-root',
@@ -25,6 +26,7 @@ import { RutValidatorWdComponent } from './components/rut-validator-wd/rut-valid
     MatDividerModule,
     RutValidatorWpComponent,
     RutValidatorWdComponent,
+    RutValidatorFormComponent,
   ],
 })
 export class AppComponent {
