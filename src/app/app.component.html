@@ -1,21 +1,33 @@
-<section class="main-container">
-  <div class="timepickers-container">
-    <div class="standard-timepicker-title">TIMEPICKER 12H</div>
-
-    <div class="standard-timepicker">
-      <mat-form-field floatLabel="always" class="form-field-timepicker" (click)="openDialogStandardTimepicker()">
-        <mat-label>Time A.M./P.M.</mat-label>
-        <input matInput class="input-timepicker" [value]="standardTimeValue" readonly>
-      </mat-form-field>
+<div class="container">
+  <div class="grid-components">
+    <!-- 12-Hour Time Picker Card -->
+    <div class="card">
+      <div class="header">
+        <h2 class="title">TIMEPICKER 12H</h2>
+      </div>
+      <div class="content">
+        <p class="description">A customizable 12-hour timepicker with AM/PM format.</p>
+        <div class="input-container">
+          <label for="time12h" class="label">Time 12H</label>
+          <input id="time12h" [value]="standardTimeValue" class="input-timepicker" readonly
+            (click)="openDialogStandardTimepicker()" />
+        </div>
+      </div>
     </div>
 
-    <div class="full-timepicker-title">TIMEPICKER 24H</div>
-
-    <div class="timepicker-full-hours">
-      <mat-form-field floatLabel="always" class="form-field-timepicker" (click)="openDialogFullTimepicker()">
-        <mat-label>Time 24 H</mat-label>
-        <input matInput class="input-timepicker" [value]="fullTimeValue" readonly>
-      </mat-form-field>
+    <!-- 24-Hour Time Picker Card -->
+    <div class="card">
+      <div class="header">
+        <h2 class="title">TIMEPICKER 24H</h2>
+      </div>
+      <div class="content">
+        <p class="description">A customizable 24-hour timepicker for precise time selection.</p>
+        <div class="input-container">
+          <label for="full-time" class="label">Time 24H</label>
+          <input id="full-time" [value]="fullTimeValue" class="input-timepicker" readonly
+            (click)="openDialogFullTimepicker()" />
+        </div>
+      </div>
     </div>
   </div>
-</section>
+</div>
