@@ -6,6 +6,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { SingleTimepickerComponent } from './components/single-timepicker/single-timepicker.component';
 import { FullTimepickerComponent } from './components/full-timepicker/full-timepicker.component';
+import { MatDividerModule } from '@angular/material/divider';
 
 @Component({
   selector: 'app-root',
@@ -19,6 +20,7 @@ import { FullTimepickerComponent } from './components/full-timepicker/full-timep
     MatFormFieldModule,
     MatInputModule,
     MatDialogModule,
+    MatDividerModule,
   ],
 })
 export class AppComponent {
