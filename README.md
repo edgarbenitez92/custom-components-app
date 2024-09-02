@@ -1,4 +1,4 @@
-# CustomComponentsApp
+# CustomTimepicker
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.3.8.
 
@@ -6,22 +6,34 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
 
-## Code scaffolding
+## About the Project
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+This project is an educational example demonstrating a custom timepicker inspired by the ngx-material-timepicker library.
 
-## Build
+You can explore two types of timepickers:
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+- **12-Hour Format**: A timepicker displaying hours in a 12-hour format with AM/PM selection.
+<p align="center">
+    <img width=196 src="./src/assets/og-images/standard-timepicker/og-standard-timepicker-1.png"/>
+    <img width=200 src="./src/assets/og-images/standard-timepicker/og-standard-timepicker-2.png"/>
+</p>
 
-## Running unit tests
+- **24-Hour Format**: A timepicker displaying hours in a 24-hour format, offering a more extensive range of time selection.
+<p align="center">
+    <img width=200 src="./src/assets/og-images/full-timepicker/og-full-timepicker-1.png"/>
+    <img width=200 src="./src/assets/og-images/full-timepicker/og-full-timepicker-2.png"/>
+</p>
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+## Flexibility and Scalability
 
-## Running end-to-end tests
+- **Adaptability**: This timepicker is easily adaptable to other frameworks or libraries, as long as JavaScript is used as the programming language.
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+- **Scalability**: The project is designed for easy scalability, allowing for straightforward modifications to the design or functionality. You can easily integrate or adapt the clock component into other parts of your application.
 
-## Further help
+## Additional Libraries (not mandatory)
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+- **[Angular Material v17](https://v17.material.angular.io/)**: Angular Material helps you build consistent, high-quality UI components with a modern design system and a flexible API. It provides a robust set of components and design options to create an appealing and functional user interface.
+
+##
+
+This revised README should give a clear overview of your project, its purpose, and how it can be adapted and scaled. If you need further adjustments, feel free to ask!
