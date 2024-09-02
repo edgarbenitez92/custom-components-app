@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { rutClean, rutFormat, rutValidate } from '../shared/utils/ValidateRut';
+import { AbstractControl, ValidationErrors, ValidatorFn } from '@angular/forms';
 
 @Injectable({
   providedIn: 'root',
@@ -17,5 +18,15 @@ export class RutService {
 
   clean(rut: string): string {
     return rutClean(rut);
+  }
+
+  rutValidator(): ValidatorFn {
+    return (control: AbstractControl): ValidationErrors | null => {
+      const rut = control.value;
+
+      if (!rut) return null;
+
+      return rutValidate(rut) ? null : { invalidRut: { value: rut } };
+    };
   }
 }
