@@ -5,59 +5,106 @@
   background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI1IiBoZWlnaHQ9IjUiPgo8cmVjdCB3aWR0aD0iNSIgaGVpZ2h0PSI1IiBmaWxsPSIjMWExZDIxIj48L3JlY3Q+CjxwYXRoIGQ9Ik0wIDVMNSAwWk02IDRMNCA2Wk0tMSAxTDEgLTFaIiBzdHJva2U9IiMyMjI2MmUiIHN0cm9rZS13aWR0aD0iMSI+PC9wYXRoPgo8L3N2Zz4=');
 }
 
-.grid-components {
-  display: grid;
-  gap: 1.5rem;
-  grid-template-columns: repeat(4, 1fr);
-  grid-auto-rows: minmax(0, auto);
-  justify-items: stretch;
-}
+.header {
+  text-align: center;
 
-.card {
-  background-color: #2d2f34;
-  color: white;
-  border: 1px solid #3a3d42;
-  overflow: hidden;
-  border-radius: 30px;
-  // min-height: 200px;
-
-  .header {
-    padding: 0.2rem;
-    color: white;
-    background-color: #38a169;
-
-    .title {
-      text-align: center;
-      font-size: 1.5rem;
-      margin-bottom: 0px;
-    }
+  .title {
+    font-size: 2rem;
+    color: #fff;
   }
 
-  .content {
-    padding: 1rem;
+  .description {
+    font-size: 1.2rem;
+    color: #bbb;
+    margin-top: 0.5rem;
+  }
+}
 
-    .description {
-      font-size: 0.875rem;
-      margin-bottom: 0.5rem;
+.components-section {
+  margin-bottom: 3rem;
+
+  .subtitle {
+    font-size: 1.5rem;
+    color: #38a169;
+    margin-bottom: 0.5rem;
+    text-align: left;
+  }
+
+  .divider {
+    margin-bottom: 1rem;
+    background-color: #bbb;
+  }
+
+  .grid-components {
+    display: grid;
+    gap: 1.5rem;
+    grid-template-columns: repeat(4, 1fr);
+    grid-auto-rows: minmax(0, auto);
+    justify-items: stretch;
+
+    @media (max-width: 992px) {
+      grid-template-columns: repeat(3, 1fr);
     }
 
-    .input-container {
-      background-color: #3a3d42;
-      padding: 0.75rem;
-      border-radius: 0.5rem;
+    @media (max-width: 768px) {
+      grid-template-columns: repeat(2, 1fr);
+    }
 
-      .label {
-        display: block;
-        margin-bottom: 0.25rem;
+    @media (max-width: 576px) {
+      grid-template-columns: 1fr;
+    }
+
+    .card {
+      background-color: #2d2f34;
+      color: white;
+      border: 1px solid #3a3d42;
+      overflow: hidden;
+      border-radius: 30px;
+      // min-height: 200px;
+
+      .header {
+        padding: 0.2rem;
+        color: white;
+        background-color: #38a169;
+
+        .title {
+          text-align: center;
+          font-size: 1rem;
+          margin: 0px;
+
+          @media (min-width: 1200px) {
+            font-size: 1.3rem;
+          }
+        }
       }
 
-      .input-timepicker {
-        background-color: #4a4d52;
-        color: white;
-        border: 1px solid #5a5d62;
-        width: 90%;
-        padding: 0.5rem;
-        cursor: pointer;
+      .content {
+        padding: 1rem;
+
+        .description {
+          font-size: 0.875rem;
+          margin-bottom: 0.5rem;
+        }
+
+        .input-container {
+          background-color: #3a3d42;
+          padding: 0.75rem;
+          border-radius: 0.5rem;
+
+          .label {
+            display: block;
+            margin-bottom: 0.25rem;
+          }
+
+          .input-timepicker {
+            background-color: #4a4d52;
+            color: white;
+            border: 1px solid #5a5d62;
+            width: 94%;
+            padding: 0.5rem;
+            cursor: pointer;
+          }
+        }
       }
     }
   }
