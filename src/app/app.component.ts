@@ -56,7 +56,6 @@ export class AppComponent {
   }
 
   openDialogStandardTimepicker(): void {
-    console.log('standard timepicker opening...');
     const dialogRef = this.matDialog.open(SingleTimepickerComponent, {
       data: {
         time: this.standardTimeValue,
@@ -74,7 +73,6 @@ export class AppComponent {
   }
 
   openDialogFullTimepicker(): void {
-    console.log('full timepicker opening...');
     const dialogRef = this.matDialog.open(FullTimepickerComponent, {
       data: {
         time: this.fullTimeValue,
