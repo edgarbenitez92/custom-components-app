@@ -6,6 +6,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { SingleTimepickerComponent } from './components/single-timepicker/single-timepicker.component';
 import { FullTimepickerComponent } from './components/full-timepicker/full-timepicker.component';
+import { MatDividerModule } from '@angular/material/divider';
 
 @Component({
   selector: 'app-root',
@@ -19,6 +20,7 @@ import { FullTimepickerComponent } from './components/full-timepicker/full-timep
     MatFormFieldModule,
     MatInputModule,
     MatDialogModule,
+    MatDividerModule,
   ],
 })
 export class AppComponent {
@@ -56,7 +58,6 @@ export class AppComponent {
   }
 
   openDialogStandardTimepicker(): void {
-    console.log('standard timepicker opening...');
     const dialogRef = this.matDialog.open(SingleTimepickerComponent, {
       data: {
         time: this.standardTimeValue,
@@ -74,7 +75,6 @@ export class AppComponent {
   }
 
   openDialogFullTimepicker(): void {
-    console.log('full timepicker opening...');
     const dialogRef = this.matDialog.open(FullTimepickerComponent, {
       data: {
         time: this.fullTimeValue,
