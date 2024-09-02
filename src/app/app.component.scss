@@ -13,13 +13,26 @@
     justify-content: center;
     align-items: center;
     position: relative;
-    margin-bottom: 2rem;
+
+    @media (max-width: 768px) {
+      flex-direction: column;
+    }
 
     .title {
       flex: 1;
-      font-size: 2rem;
       color: #fff;
+      font-size: 1.5rem;
+      margin-right: 1rem;
       margin-bottom: 0;
+
+      @media (min-width: 425px) {
+        font-size: 2rem;
+        margin-right: 0;
+      }
+
+      @media (max-width: 768px) {
+        margin-bottom: 1rem;
+      }
     }
 
     .social-icons {
@@ -28,13 +41,17 @@
       align-items: center;
       gap: 1rem;
 
+      @media (max-width: 768px) {
+        justify-content: center;
+      }
+
       a {
         display: flex;
         align-items: center;
 
         .icon {
-          width: 30px;
-          height: 30px;
+          width: 24px;
+          height: 24px;
 
           &:hover {
             filter: brightness(0.8);
@@ -47,7 +64,11 @@
   .description {
     font-size: 1rem;
     color: #bbb;
-    margin-top: 0.5rem;
+    margin-top: 1.5rem;
+
+    @media (max-width: 768px) {
+      font-size: 0.9rem;
+    }
   }
 }
 
