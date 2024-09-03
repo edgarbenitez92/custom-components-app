@@ -93,4 +93,5 @@ interface Country {
   label: string;
   code: string;
   flag: string;
+  phoneFormat: string;
 }

@@ -24,6 +24,6 @@
     </div>
 
     <input type="tel" inputmode="numeric" pattern="[0-9]*" maxlength="9" [formControl]="phoneNumberControl"
-      placeholder="(2) 2123 4567" class="phone-input" (input)="handlePhoneChange($event)" />
+      [placeholder]="selectedCountry.phoneFormat" class="phone-input" (input)="handlePhoneChange($event)" />
   </div>
 </div>
