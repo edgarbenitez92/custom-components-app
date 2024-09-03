@@ -114,6 +114,7 @@
       border: 1px solid #3a3d42;
       overflow: hidden;
       border-radius: 30px;
+      position: relative;
 
       .header {
         padding: 0.2rem;
@@ -136,7 +137,8 @@
 
         .description {
           font-size: 0.85rem;
-          margin-bottom: 0.5rem;
+          text-align: center;
+          margin-bottom: 1.5;
         }
 
         .input-container {
@@ -153,7 +155,7 @@
             background-color: #4a4d52;
             color: white;
             border: 1px solid #5a5d62;
-            width: 94%;
+            width: 90%;
             padding: 0.5rem;
             cursor: pointer;
           }

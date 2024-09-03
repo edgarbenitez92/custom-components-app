@@ -1,1 +1,29 @@
-<p>intl-tel-input works!</p>
+<div class="phone-input-wrapper">
+  <div class="phone-input-container">
+    <div class="flag-dropdown" #dropdown>
+      <button class="flag-dropdown-button" (click)="toggleDropdown()">
+        <img [src]="selectedCountry.flag" alt="{{ selectedCountry.label }}" class="flag-img" />
+        <span class="selected-code">{{ selectedCountry.code }}</span>
+        <span class="arrow-down"></span>
+      </button>
+      @if (isOpen) {
+      <div class="country-list-container">
+        <input type="text" placeholder="Buscar País" [(ngModel)]="searchTerm" class="country-search"
+          autocomplete="off" />
+        <ul class="country-list">
+          @for (country of filterCountries(); track $index) {
+          <li (click)="selectCountry(country)">
+            <img [src]="country.flag" alt="{{ country.label }}" class="flag-img" />
+            <span class="country-name">{{ country.label }}</span>
+            <span class="country-code">{{ country.code }}</span>
+          </li>
+          }
+        </ul>
+      </div>
+      }
+    </div>
+
+    <input type="tel" inputmode="numeric" pattern="[0-9]*" maxlength="9" [formControl]="phoneNumberControl"
+      placeholder="(2) 2123 4567" class="phone-input" (input)="handlePhoneChange($event)" />
+  </div>
+</div>
