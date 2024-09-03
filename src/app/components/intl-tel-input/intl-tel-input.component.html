@@ -23,7 +23,8 @@
       }
     </div>
 
-    <input type="tel" inputmode="numeric" pattern="[0-9]*" maxlength="9" [formControl]="phoneNumberControl"
-      [placeholder]="selectedCountry.phoneFormat" class="phone-input" (input)="handlePhoneChange($event)" />
+    <input type="tel" inputmode="numeric" pattern="[0-9]*" [maxlength]="selectedCountry.maxLength"
+      [formControl]="phoneNumberControl" [placeholder]="selectedCountry.phoneFormat" class="phone-input"
+      (input)="handlePhoneChange($event)" />
   </div>
 </div>

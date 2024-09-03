@@ -94,4 +94,5 @@ interface Country {
   code: string;
   flag: string;
   phoneFormat: string;
+  maxLength: number;
 }
