@@ -55,6 +55,27 @@
   </section>
 
   <section class="components-section">
+    <h2 class="subtitle">INT-TEL-INPUT</h2>
+    <mat-divider class="divider"></mat-divider>
+
+    <div class="grid-components">
+      <!-- Intl-tel-input Card -->
+      <div class="card">
+        <div class="header">
+          <h2 class="title">INT-TEL-INPUT</h2>
+        </div>
+        <div class="content">
+          <p class="description">
+            It provides country code selection and phone number formatting based on the selected region.
+          </p>
+
+          <app-intl-tel-input></app-intl-tel-input>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="components-section">
     <h2 class="subtitle">Custom Calendar</h2>
     <mat-divider class="divider"></mat-divider>
 
@@ -90,9 +111,8 @@
           <p class="description">
             The RUT is automatically formatted, validated, and cleaned as part of the process in a custom pipe.
           </p>
-          <div class="input-container">
-            <app-rut-validator-wp></app-rut-validator-wp>
-          </div>
+
+          <app-rut-validator-wp></app-rut-validator-wp>
         </div>
       </div>
 
@@ -106,13 +126,12 @@
             Similar to the pipe version, implementing RUT format, validation, and cleaning directly in a custom
             directive.
           </p>
-          <div class="input-container">
-            <app-rut-validator-wd></app-rut-validator-wd>
-          </div>
+
+          <app-rut-validator-wd></app-rut-validator-wd>
         </div>
       </div>
 
-      <!-- RUT validator into reactives forms -->
+      <!-- RUT validator into reactives forms Card -->
       <div class="card">
         <div class="header">
           <h2 class="title">RUT VALIDATOR WITH FORMS</h2>
@@ -121,9 +140,8 @@
           <p class="description">
             Implementing RUT format, validation, and cleaning across reactives forms to validate the field.
           </p>
-          <div class="input-container">
-            <app-rut-validator-form></app-rut-validator-form>
-          </div>
+
+          <app-rut-validator-form></app-rut-validator-form>
         </div>
       </div>
     </div>

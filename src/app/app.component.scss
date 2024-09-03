@@ -112,11 +112,14 @@
       background-color: #2d2f34;
       color: white;
       border: 1px solid #3a3d42;
-      overflow: hidden;
+      overflow: visible;
       border-radius: 30px;
+      position: relative;
 
       .header {
         padding: 0.2rem;
+        border-top-left-radius: 30px;
+        border-top-right-radius: 30px;
         color: white;
         background-color: #38a169;
 
@@ -133,10 +136,13 @@
 
       .content {
         padding: 1rem;
+        position: relative;
 
         .description {
-          font-size: 0.75rem;
-          margin-bottom: 0.5rem;
+          font-size: 0.80rem;
+          margin-bottom: 1rem !important;
+          text-align: center;
+          margin-bottom: 0;
         }
 
         .input-container {
@@ -153,7 +159,7 @@
             background-color: #4a4d52;
             color: white;
             border: 1px solid #5a5d62;
-            width: 94%;
+            width: 90%;
             padding: 0.5rem;
             cursor: pointer;
           }
