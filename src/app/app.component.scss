@@ -112,12 +112,14 @@
       background-color: #2d2f34;
       color: white;
       border: 1px solid #3a3d42;
-      overflow: hidden;
+      overflow: visible;
       border-radius: 30px;
       position: relative;
 
       .header {
         padding: 0.2rem;
+        border-top-left-radius: 30px;
+        border-top-right-radius: 30px;
         color: white;
         background-color: #38a169;
 
@@ -134,11 +136,13 @@
 
       .content {
         padding: 1rem;
+        position: relative;
 
         .description {
-          font-size: 0.85rem;
+          font-size: 0.80rem;
+          margin-bottom: 1rem !important;
           text-align: center;
-          margin-bottom: 1.5;
+          margin-bottom: 0;
         }
 
         .input-container {
