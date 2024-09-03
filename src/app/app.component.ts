@@ -7,6 +7,9 @@ import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { SingleTimepickerComponent } from './components/single-timepicker/single-timepicker.component';
 import { FullTimepickerComponent } from './components/full-timepicker/full-timepicker.component';
 import { MatDividerModule } from '@angular/material/divider';
+import { RutValidatorWpComponent } from './components/rut-validator-wp/rut-validator-wp.component';
+import { RutValidatorWdComponent } from './components/rut-validator-wd/rut-validator-wd.component';
+import { RutValidatorFormComponent } from './components/rut-validator-form/rut-validator-form.component';
 
 @Component({
   selector: 'app-root',
@@ -21,6 +24,9 @@ import { MatDividerModule } from '@angular/material/divider';
     MatInputModule,
     MatDialogModule,
     MatDividerModule,
+    RutValidatorWpComponent,
+    RutValidatorWdComponent,
+    RutValidatorFormComponent,
   ],
 })
 export class AppComponent {

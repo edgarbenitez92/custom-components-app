@@ -1,0 +1,19 @@
+<form [formGroup]="rutValidatorForm">
+  <div class="input-container">
+    <label for="rut" class="label">RUT</label>
+    <input id="rut" formControlName="rut" class="input-rut" placeholder="Enter a Chilean RUT..." autocomplete="off"
+      onlyRut />
+
+    @if (rutField?.hasError) {
+    <div class="input-error-msg">
+      {{ rutErrorMessage }}
+    </div>
+    }
+
+    @if (rutValidatorForm.valid) {
+    <div class="input-valid-msg">
+      RUT valid!!!
+    </div>
+    }
+  </div>
+</form>

@@ -1,0 +1,18 @@
+.input-container {
+  background-color: #3a3d42;
+  padding: 0.75rem;
+  border-radius: 0.5rem;
+
+  .label {
+    display: block;
+    margin-bottom: 0.25rem;
+  }
+
+  .input-rut {
+    background-color: #4a4d52;
+    color: white;
+    border: 1px solid #5a5d62;
+    width: 94%;
+    padding: 0.5rem;
+  }
+}
