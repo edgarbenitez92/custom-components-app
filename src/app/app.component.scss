@@ -62,7 +62,7 @@
   }
 
   .description {
-    font-size: 1.2rem;
+    font-size: 1rem;
     color: #bbb;
     margin-top: 1.5rem;
 
@@ -76,7 +76,7 @@
   margin-bottom: 3rem;
 
   .subtitle {
-    font-size: 1.5rem;
+    font-size: 1.3rem;
     color: #38a169;
     margin-bottom: 0.5rem;
     text-align: left;
@@ -122,11 +122,11 @@
 
         .title {
           text-align: center;
-          font-size: 1rem;
+          font-size: 0.8rem;
           margin: 0px;
 
           @media (min-width: 1200px) {
-            font-size: 1.3rem;
+            font-size: 1.1rem;
           }
         }
       }
@@ -135,7 +135,7 @@
         padding: 1rem;
 
         .description {
-          font-size: 0.875rem;
+          font-size: 0.75rem;
           margin-bottom: 0.5rem;
         }
 

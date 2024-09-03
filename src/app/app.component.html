@@ -54,8 +54,56 @@
     </div>
   </section>
 
-  <!-- <section class="components-section">
+  <section class="components-section">
     <h2 class="subtitle">Chilean RUT Validators</h2>
     <mat-divider class="divider"></mat-divider>
-  </section> -->
+
+    <div class="grid-components">
+      <!-- RUT validator with pipe Card -->
+      <div class="card">
+        <div class="header">
+          <h2 class="title">RUT VALIDATOR USING PIPE</h2>
+        </div>
+        <div class="content">
+          <p class="description">
+            The RUT is automatically formatted, validated, and cleaned as part of the process in a custom pipe.
+          </p>
+          <div class="input-container">
+            <app-rut-validator-wp></app-rut-validator-wp>
+          </div>
+        </div>
+      </div>
+
+      <!-- RUT validator with directive Card -->
+      <div class="card">
+        <div class="header">
+          <h2 class="title">RUT VALIDATOR USING DIRECTIVE</h2>
+        </div>
+        <div class="content">
+          <p class="description">
+            Similar to the pipe version, implementing RUT format, validation, and cleaning directly in a custom
+            directive.
+          </p>
+          <div class="input-container">
+            <app-rut-validator-wd></app-rut-validator-wd>
+          </div>
+        </div>
+      </div>
+
+      <!-- RUT validator into reactives forms -->
+      <div class="card">
+        <div class="header">
+          <h2 class="title">RUT VALIDATOR WITH FORMS</h2>
+        </div>
+        <div class="content">
+          <p class="description">
+            Implementing RUT format, validation, and cleaning across reactives forms to validate the field.
+          </p>
+          <div class="input-container">
+            <app-rut-validator-form></app-rut-validator-form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 </main>
