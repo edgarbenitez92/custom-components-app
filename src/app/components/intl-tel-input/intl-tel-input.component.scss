@@ -1,0 +1,118 @@
+.phone-input-container {
+  display: flex;
+  width: 100%;
+  height: 39px;
+  border: 1px solid #ccc;
+  border-radius: 2px;
+  overflow: visible;
+  position: relative;
+
+  .flag-dropdown {
+    position: relative;
+    width: 40%;
+
+    .flag-dropdown-button {
+      display: flex;
+      align-items: center;
+      height: 39px;
+      background: white;
+      border: none;
+      cursor: pointer;
+      border-right: 1px solid #ccc;
+      width: 100%;
+      box-sizing: border-box;
+
+      .flag {
+        font-size: 1.25rem;
+        line-height: 1.25rem;
+        margin-right: 5px;
+      }
+
+      .selected-code {
+        margin: 0 4px;
+        font-size: 0.875rem;
+      }
+
+      .arrow-down {
+        width: 0;
+        height: 0;
+        border-left: 5px solid transparent;
+        border-right: 5px solid transparent;
+        border-top: 5px solid #333;
+        margin-left: 5px;
+      }
+    }
+
+    .country-list-container {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      z-index: 999;
+      background-color: white;
+      border: 1px solid #ccc;
+      border-top: none;
+      max-height: 200px;
+      overflow-y: auto;
+      width: 250%;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      box-sizing: border-box;
+
+      .country-search {
+        width: 100%;
+        padding: 8px;
+        border: none;
+        border-bottom: 1px solid #ccc;
+        box-sizing: border-box;
+      }
+
+      .country-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+
+        li {
+          display: flex;
+          align-items: center;
+          padding: 8px;
+          cursor: pointer;
+
+          &:hover {
+            background-color: #f0f0f0;
+          }
+
+          .country-name {
+            flex-grow: 1;
+            font-size: 0.875rem;
+            margin: 0 8px;
+            color: #333;
+          }
+
+          .country-code {
+            color: #666;
+            font-size: 0.875rem;
+          }
+        }
+      }
+    }
+  }
+
+  .phone-input {
+    flex-grow: 1;
+    border: none;
+    padding: 8px;
+    font-size: 1rem;
+    width: 100%;
+    box-sizing: border-box;
+
+    &:focus {
+      outline: none;
+    }
+  }
+}
+
+.flag-img {
+  width: 20px;
+  height: auto;
+  margin-right: 5px;
+  vertical-align: middle;
+}
