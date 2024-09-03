@@ -10,6 +10,7 @@ import { MatDividerModule } from '@angular/material/divider';
 import { RutValidatorWpComponent } from './components/rut-validator-wp/rut-validator-wp.component';
 import { RutValidatorWdComponent } from './components/rut-validator-wd/rut-validator-wd.component';
 import { RutValidatorFormComponent } from './components/rut-validator-form/rut-validator-form.component';
+import { IntlTelInputComponent } from './components/intl-tel-input/intl-tel-input.component';
 
 @Component({
   selector: 'app-root',
@@ -27,6 +28,7 @@ import { RutValidatorFormComponent } from './components/rut-validator-form/rut-v
     RutValidatorWpComponent,
     RutValidatorWdComponent,
     RutValidatorFormComponent,
+    IntlTelInputComponent,
   ],
 })
 export class AppComponent {
