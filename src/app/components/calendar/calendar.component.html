@@ -1,0 +1,74 @@
+<div class="calendar-container">
+  <input type="text" placeholder="dd/mm/yyyy" [(ngModel)]="inputValue" (focus)="handleInputFocus()"
+    (input)="handleInputChange($event)" class="form-control calendar-input" />
+  <div *ngIf="isOpen" class="calendar-popup">
+    <div class="calendar-content">
+      <div class="calendar-header">
+        <div class="calendar-nav">
+          <button type="button" *ngIf="canNavigateBack()" (click)="view === 'days' ? changeMonth(-1) : changeYear(-1)"
+            class="calendar-nav-button">
+            &lt;
+          </button>
+        </div>
+        <button type="button" *ngIf="view === 'days'" (click)="setView('months')" class="calendar-title">
+          {{ MONTHS[date.getMonth()] }} {{ date.getFullYear() }}
+        </button>
+        <button type="button" *ngIf="view === 'months'" (click)="setView('years')" class="calendar-title">
+          {{ date.getFullYear() }}
+        </button>
+        <button *ngIf="view === 'years'" (click)="setView('months')" class="calendar-title">
+          {{ date.getFullYear() - 7 }} - {{ date.getFullYear() + 8 }}
+        </button>
+        <div class="calendar-nav">
+          <button type="button" *ngIf="canNavigateForward()" (click)="view === 'days' ? changeMonth(1) : changeYear(1)"
+            class="calendar-nav-button">
+            &gt;
+          </button>
+        </div>
+      </div>
+      <div class="calendar-body">
+        <div *ngIf="view === 'days'" class="calendar-days-header">
+          @for (day of DAYS; track $index) {
+          <div class="calendar-day-name">
+            {{ day }}
+          </div>
+          }
+        </div>
+        <div *ngIf="view === 'days'" class="calendar-days-grid">
+          @for (day of renderDays(); track $index) {
+          <button type="button" [ngClass]="{
+                'calendar-day': true,
+                'outside-month': !day.isCurrentMonth,
+                'disabled-day': day.isDisabled,
+                'selected-day': day.isSelected
+              }" [disabled]="day.isDisabled" (click)="handleDateClick(day.day)">
+            {{ day.day }}
+          </button>
+          }
+        </div>
+        <div *ngIf="view === 'months'" class="calendar-months-grid">
+          @for (month of renderMonths(); track $index) {
+          <button type="button" [ngClass]="{
+                'calendar-month': true,
+                'disabled-month': month.isDisabled,
+                'selected-month': month.isSelected
+              }" [disabled]="month.isDisabled" (click)="handleMonthClick(month.index)">
+            {{ month.month }}
+          </button>
+          }
+        </div>
+        <div *ngIf="view === 'years'" class="calendar-years-grid">
+          @for (year of renderYears(); track $index) {
+          <button type="button" [ngClass]="{
+                'calendar-year': true,
+                'disabled-year': year.isDisabled,
+                'selected-year': year.isSelected
+              }" [disabled]="year.isDisabled" (click)="handleYearClick(year.year)">
+            {{ year.year }}
+          </button>
+          }
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
