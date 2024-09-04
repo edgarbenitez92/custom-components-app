@@ -1,4 +1,4 @@
-<div class="calendar-container">
+<div #calendar class="calendar-container">
   <input type="text" placeholder="dd/mm/yyyy" [(ngModel)]="inputValue" (focus)="handleInputFocus()"
     (input)="handleInputChange($event)" class="form-control calendar-input" />
   <div *ngIf="isOpen" class="calendar-popup">
@@ -16,7 +16,7 @@
         <button type="button" *ngIf="view === 'months'" (click)="setView('years')" class="calendar-title">
           {{ date.getFullYear() }}
         </button>
-        <button *ngIf="view === 'years'" (click)="setView('months')" class="calendar-title">
+        <button type="button" *ngIf="view === 'years'" (click)="setView('months')" class="calendar-title">
           {{ date.getFullYear() - 7 }} - {{ date.getFullYear() + 8 }}
         </button>
         <div class="calendar-nav">
