@@ -1,5 +1,11 @@
 import { NgClass, NgIf, NgFor } from '@angular/common';
-import { Component, inject } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  HostListener,
+  inject,
+  ViewChild,
+} from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CalendarService } from '../../services/calendar.service';
 import {
@@ -17,6 +23,8 @@ import {
   styleUrl: './calendar.component.scss',
 })
 export class CalendarComponent {
+  @ViewChild('calendar') calendar!: ElementRef;
+
   private calendarService = inject(CalendarService);
 
   monthsList: string[];
@@ -42,6 +50,21 @@ export class CalendarComponent {
 
   setView(view: CalendarView) {
     this.view = view;
+  }
+
+  @HostListener('document:click', ['$event'])
+  onClickOutside(event: Event) {
+    const targetElement = event.target as HTMLDivElement;
+
+    if (
+      this.calendar &&
+      !this.calendar.nativeElement.contains(event.target) &&
+      !targetElement.classList.contains('calendar-title') &&
+      !targetElement.classList.contains('calendar-month') &&
+      !targetElement.classList.contains('calendar-year')
+    ) {
+      this.isOpen = false;
+    }
   }
 
   handleInputChange(event: Event) {
