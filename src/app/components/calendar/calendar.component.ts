@@ -1,8 +1,13 @@
 import { NgClass, NgIf, NgFor } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-
-type CalendarView = 'days' | 'months' | 'years';
+import { CalendarService } from '../../services/calendar.service';
+import {
+  CalendarView,
+  DaysView,
+  MonthsView,
+  YearsView,
+} from '../../shared/interfaces/Calendar.interface';
 
 @Component({
   selector: 'app-calendar',
@@ -12,21 +17,11 @@ type CalendarView = 'days' | 'months' | 'years';
   styleUrl: './calendar.component.scss',
 })
 export class CalendarComponent {
-  DAYS: string[] = ['Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb', 'Dom'];
-  MONTHS: string[] = [
-    'Enero',
-    'Febrero',
-    'Marzo',
-    'Abril',
-    'Mayo',
-    'Junio',
-    'Julio',
-    'Agosto',
-    'Septiembre',
-    'Octubre',
-    'Noviembre',
-    'Diciembre',
-  ];
+  private calendarService = inject(CalendarService);
+
+  monthsList: string[];
+  daysList: string[];
+
   date: Date = new Date();
   selectedDate: Date = new Date();
   view: CalendarView = 'days';
@@ -36,37 +31,24 @@ export class CalendarComponent {
   minDate: Date = new Date(2021, 0, 1);
   maxDate: Date = new Date();
 
+  constructor() {
+    this.daysList = this.calendarService.daysArr;
+    this.monthsList = this.calendarService.monthsArr;
+  }
+
   ngOnInit() {
-    this.inputValue = this.formatDate(this.selectedDate);
+    this.inputValue = this.calendarService.formatDate(this.selectedDate);
   }
 
   setView(view: CalendarView) {
     this.view = view;
   }
 
-  formatDate(date: Date): string {
-    return `${date.getDate().toString().padStart(2, '0')}/${(
-      date.getMonth() + 1
-    )
-      .toString()
-      .padStart(2, '0')}/${date.getFullYear()}`;
-  }
-
-  parseDate(dateString: string): Date | null {
-    const parts = dateString.split('/');
-    if (parts.length === 3) {
-      const day = parseInt(parts[0], 10);
-      const month = parseInt(parts[1], 10) - 1;
-      const year = parseInt(parts[2], 10);
-      return new Date(year, month, day);
-    }
-    return null;
-  }
-
   handleInputChange(event: Event) {
     const target = event.target as HTMLInputElement;
     this.inputValue = target.value;
-    const parsedDate = this.parseDate(target.value);
+    const parsedDate = this.calendarService.parseDate(target.value);
+
     if (
       parsedDate &&
       parsedDate >= this.minDate &&
@@ -87,9 +69,10 @@ export class CalendarComponent {
       this.date.getMonth(),
       day
     );
+
     if (newDate >= this.minDate && newDate <= this.maxDate) {
       this.selectedDate = newDate;
-      this.inputValue = this.formatDate(this.selectedDate);
+      this.inputValue = this.calendarService.formatDate(this.selectedDate);
       this.isOpen = false;
     }
   }
@@ -126,97 +109,53 @@ export class CalendarComponent {
     }
   }
 
-  renderDays() {
-    const monthStart = new Date(
-      this.date.getFullYear(),
-      this.date.getMonth(),
-      1
+  renderDays(
+    date: Date,
+    minDate: Date,
+    maxDate: Date,
+    selectedDate: Date
+  ): DaysView[] {
+    return this.calendarService.renderDays(
+      date,
+      minDate,
+      maxDate,
+      selectedDate
     );
-    const monthEnd = new Date(
-      this.date.getFullYear(),
-      this.date.getMonth() + 1,
-      0
+  }
+
+  renderMonths(
+    date: Date,
+    minDate: Date,
+    maxDate: Date,
+    selectedDate: Date
+  ): MonthsView[] {
+    return this.calendarService.renderMonths(
+      date,
+      minDate,
+      maxDate,
+      selectedDate
     );
-    const startDate = new Date(monthStart);
-    startDate.setDate(startDate.getDate() - ((startDate.getDay() + 6) % 7));
-    const endDate = new Date(monthEnd);
-    endDate.setDate(endDate.getDate() + ((7 - endDate.getDay()) % 7));
-
-    const days = [];
-    const currentDate = new Date(startDate);
-    while (currentDate <= endDate) {
-      const day = currentDate.getDate();
-      const month = currentDate.getMonth();
-      const year = currentDate.getFullYear();
-      const isCurrentMonth = month === this.date.getMonth();
-      const isDisabled =
-        currentDate < this.minDate || currentDate > this.maxDate;
-      const isSelected =
-        this.selectedDate &&
-        day === this.selectedDate.getDate() &&
-        month === this.selectedDate.getMonth() &&
-        year === this.selectedDate.getFullYear();
-
-      days.push({
-        day,
-        isCurrentMonth,
-        isDisabled,
-        isSelected,
-        date: new Date(currentDate),
-      });
-      currentDate.setDate(currentDate.getDate() + 1);
-    }
-
-    return days;
   }
 
-  renderMonths() {
-    return this.MONTHS.map((month, index) => {
-      const isDisabled =
-        new Date(this.date.getFullYear(), index + 1, 0) < this.minDate ||
-        new Date(this.date.getFullYear(), index, 1) > this.maxDate;
-      const isSelected =
-        index === this.date.getMonth() &&
-        this.date.getFullYear() === this.selectedDate.getFullYear();
-      return { month, isDisabled, isSelected, index };
-    });
+  renderYears(
+    date: Date,
+    minDate: Date,
+    maxDate: Date,
+    selectedDate: Date
+  ): YearsView[] {
+    return this.calendarService.renderYears(
+      date,
+      minDate,
+      maxDate,
+      selectedDate
+    );
   }
 
-  renderYears() {
-    const currentYear = this.date.getFullYear();
-    const years = [];
-    for (let i = currentYear - 7; i <= currentYear + 8; i++) {
-      const isDisabled =
-        i < this.minDate.getFullYear() || i > this.maxDate.getFullYear();
-      const isSelected = i === this.selectedDate.getFullYear();
-      years.push({ year: i, isDisabled, isSelected });
-    }
-    return years;
+  canNavigateBack(view: string, minDate: Date, date: Date): boolean {
+    return this.calendarService.canNavigateBack(view, minDate, date);
   }
 
-  canNavigateBack() {
-    if (this.view === 'days') {
-      return (
-        new Date(this.date.getFullYear(), this.date.getMonth() - 1, 1) >=
-        this.minDate
-      );
-    } else if (this.view === 'months') {
-      return this.date.getFullYear() > this.minDate.getFullYear();
-    } else {
-      return this.date.getFullYear() - 7 > this.minDate.getFullYear();
-    }
-  }
-
-  canNavigateForward() {
-    if (this.view === 'days') {
-      return (
-        new Date(this.date.getFullYear(), this.date.getMonth() + 1, 0) <=
-        this.maxDate
-      );
-    } else if (this.view === 'months') {
-      return this.date.getFullYear() < this.maxDate.getFullYear();
-    } else {
-      return this.date.getFullYear() + 8 < this.maxDate.getFullYear();
-    }
+  canNavigateForward(view: string, maxDate: Date, date: Date): boolean {
+    return this.calendarService.canNavigateForward(view, maxDate, date);
   }
 }

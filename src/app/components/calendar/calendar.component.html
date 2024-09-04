@@ -5,13 +5,13 @@
     <div class="calendar-content">
       <div class="calendar-header">
         <div class="calendar-nav">
-          <button type="button" *ngIf="canNavigateBack()" (click)="view === 'days' ? changeMonth(-1) : changeYear(-1)"
-            class="calendar-nav-button">
+          <button type="button" *ngIf="canNavigateBack(view, minDate, date)"
+            (click)="view === 'days' ? changeMonth(-1) : changeYear(-1)" class="calendar-nav-button">
             &lt;
           </button>
         </div>
         <button type="button" *ngIf="view === 'days'" (click)="setView('months')" class="calendar-title">
-          {{ MONTHS[date.getMonth()] }} {{ date.getFullYear() }}
+          {{ monthsList[date.getMonth()] }} {{ date.getFullYear() }}
         </button>
         <button type="button" *ngIf="view === 'months'" (click)="setView('years')" class="calendar-title">
           {{ date.getFullYear() }}
@@ -20,22 +20,22 @@
           {{ date.getFullYear() - 7 }} - {{ date.getFullYear() + 8 }}
         </button>
         <div class="calendar-nav">
-          <button type="button" *ngIf="canNavigateForward()" (click)="view === 'days' ? changeMonth(1) : changeYear(1)"
-            class="calendar-nav-button">
+          <button type="button" *ngIf="canNavigateForward(view, maxDate, date)"
+            (click)="view === 'days' ? changeMonth(1) : changeYear(1)" class="calendar-nav-button">
             &gt;
           </button>
         </div>
       </div>
       <div class="calendar-body">
         <div *ngIf="view === 'days'" class="calendar-days-header">
-          @for (day of DAYS; track $index) {
+          @for (day of daysList; track $index) {
           <div class="calendar-day-name">
             {{ day }}
           </div>
           }
         </div>
         <div *ngIf="view === 'days'" class="calendar-days-grid">
-          @for (day of renderDays(); track $index) {
+          @for (day of renderDays(date, minDate, maxDate, selectedDate); track $index) {
           <button type="button" [ngClass]="{
                 'calendar-day': true,
                 'outside-month': !day.isCurrentMonth,
@@ -47,7 +47,7 @@
           }
         </div>
         <div *ngIf="view === 'months'" class="calendar-months-grid">
-          @for (month of renderMonths(); track $index) {
+          @for (month of renderMonths(date, minDate, maxDate, selectedDate); track $index) {
           <button type="button" [ngClass]="{
                 'calendar-month': true,
                 'disabled-month': month.isDisabled,
@@ -58,7 +58,7 @@
           }
         </div>
         <div *ngIf="view === 'years'" class="calendar-years-grid">
-          @for (year of renderYears(); track $index) {
+          @for (year of renderYears(date, minDate, maxDate, selectedDate); track $index) {
           <button type="button" [ngClass]="{
                 'calendar-year': true,
                 'disabled-year': year.isDisabled,
