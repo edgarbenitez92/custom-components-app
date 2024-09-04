@@ -108,12 +108,21 @@
             }
 
             &.outside-month {
-              color: #6b7280;
+              color: #cbd5e0;
+              cursor: not-allowed;
+
+              &:hover {
+                background-color: transparent;
+              }
             }
 
             &.disabled-day {
               color: #cbd5e0;
               cursor: not-allowed;
+
+              &:hover {
+                background-color: transparent;
+              }
             }
 
             &.selected-day {
