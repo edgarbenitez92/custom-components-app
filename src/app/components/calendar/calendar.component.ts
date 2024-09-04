@@ -1,5 +1,5 @@
 import { NgClass, NgIf, NgFor } from '@angular/common';
-import { Component, ElementRef, HostListener, inject } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
 type CalendarView = 'days' | 'months' | 'years';
@@ -12,8 +12,6 @@ type CalendarView = 'days' | 'months' | 'years';
   styleUrl: './calendar.component.scss',
 })
 export class CalendarComponent {
-  private elementRef = inject(ElementRef);
-
   DAYS: string[] = ['Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb', 'Dom'];
   MONTHS: string[] = [
     'Enero',
@@ -40,13 +38,6 @@ export class CalendarComponent {
 
   ngOnInit() {
     this.inputValue = this.formatDate(this.selectedDate);
-  }
-
-  @HostListener('document:click', ['$event'])
-  clickOutside(event: Event) {
-    if (!this.elementRef.nativeElement.contains(event.target)) {
-      this.isOpen = false;
-    }
   }
 
   setView(view: CalendarView) {
