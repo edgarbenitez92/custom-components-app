@@ -11,6 +11,7 @@ import { RutValidatorWpComponent } from './components/rut-validator-wp/rut-valid
 import { RutValidatorWdComponent } from './components/rut-validator-wd/rut-validator-wd.component';
 import { RutValidatorFormComponent } from './components/rut-validator-form/rut-validator-form.component';
 import { IntlTelInputComponent } from './components/intl-tel-input/intl-tel-input.component';
+import { CalendarComponent } from './components/calendar/calendar.component';
 
 @Component({
   selector: 'app-root',
@@ -29,6 +30,7 @@ import { IntlTelInputComponent } from './components/intl-tel-input/intl-tel-inpu
     RutValidatorWdComponent,
     RutValidatorFormComponent,
     IntlTelInputComponent,
+    CalendarComponent,
   ],
 })
 export class AppComponent {
