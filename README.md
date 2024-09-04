@@ -28,7 +28,42 @@ Explore two types of timepickers inspired by the `ngx-material-timepicker` libra
     <img width=200 src="./src/assets/og-images/full-timepicker/og-full-timepicker-2.png"/>
 </p>
 
-#### 2. **Chilean RUT Validators**
+#### 2. **International Phone Number Input**
+
+Inspired by the `ngx-intl-tel-input` library, this component allows users to input and validate international phone numbers:
+
+- **International Phone Input**: Provides country code selection and phone number formatting based on the selected region.
+<p align="center">
+    <img width=200 src="./src/assets/og-images/intl-tel-input/og-intl-tel-input-1.png"/>
+</p>
+<p align="center">
+    <img width=200 src="./src/assets/og-images/intl-tel-input/og-intl-tel-input-2.png"/>
+</p>
+<p align="center">
+    <img width=200 src="./src/assets/og-images/intl-tel-input/og-intl-tel-input-3.png"/>
+</p>
+
+#### 3. **Custom Calendar**
+
+The custom calendar component provides a sleek and user-friendly date selection interface. The calendar offers month, year, and day selection in a visually structured way, inspired by modern UI calendar pickers.
+
+- **Features:**
+  - Month, Year, and Day views for easy navigation.
+  - Full date range restriction support.
+  - Customizable design, ensuring flexibility for different UI needs.
+  - Lightweight, without any external dependencies.
+
+<p align="center">
+    <img width=200 src="./src/assets/og-images/calendar/og-calendar-1.png"/>
+    </p>
+
+<p align="center">
+    <img width=150 height=200 src="./src/assets/og-images/calendar/og-calendar-2.png"/>
+    <img width=150 height=200 src="./src/assets/og-images/calendar/og-calendar-3.png"/>
+    <img width=150 height=200 src="./src/assets/og-images/calendar/og-calendar-4.png"/>
+</p>
+
+#### 4. **Chilean RUT Validators**
 
 Replicating the functionality of the `ng9-rut` library, these components offer robust RUT (Rol Único Tributario) validation:
 
@@ -48,15 +83,6 @@ Replicating the functionality of the `ng9-rut` library, these components offer r
     <img width=180 src="./src/assets/og-images/rut-validator/og-rut-form-1.png"/>
     <img width=183 src="./src/assets/og-images/rut-validator/og-rut-form-2.png"/>
     <img width=186 src="./src/assets/og-images/rut-validator/og-rut-form-3.png"/>
-</p>
-
-#### 3. **International Phone Number Input**
-
-Inspired by the `ngx-intl-tel-input` library, this component allows users to input and validate international phone numbers:
-
-- **International Phone Input**: Provides country code selection and phone number formatting based on the selected region.
-<p align="center">
-    <img width=200 src="./src/assets/og-images/intl-tel-input/og-intl-tel-input.png"/>
 </p>
 
 ## Flexibility and Scalability
