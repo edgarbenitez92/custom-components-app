@@ -1,6 +1,6 @@
 <div #calendar class="calendar-container">
   <input type="text" placeholder="dd/mm/yyyy" [(ngModel)]="inputValue" (focus)="handleInputFocus()"
-    (input)="handleInputChange($event)" class="form-control calendar-input" />
+    (input)="handleInputChange($event)" class="form-control calendar-input" readonly />
   <div *ngIf="isOpen" class="calendar-popup">
     <div class="calendar-content">
       <div class="calendar-header">
